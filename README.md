@@ -12,7 +12,7 @@ go get -u github.com/duanguoxue/suggestion
 ```
 使用
 ====
-先看一个例子（来自[example.go](/example.go)）
+先看一个例子（来自[example.go](/example/example.go)）
 ```go
 package main
 
