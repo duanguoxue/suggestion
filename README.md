@@ -5,6 +5,12 @@ Suggestion
 支持：汉字，拼音，简拼提示 
 启动过程加载字典较慢2-6s
 
+安装更新
+====
+go get -u github.com/duanguoxue/Suggestion
+
+使用
+====
 先看一个例子（来自[example.go](/example.go)）
 ```go
 package main
