@@ -7,6 +7,7 @@ Suggestion
 
 安装更新
 ====
+```go
 go get -u github.com/duanguoxue/suggestion
 
 使用
