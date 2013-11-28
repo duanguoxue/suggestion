@@ -33,4 +33,4 @@ func main() {
 	queryDict(s, "bzj", 10)
 }
 
-```go
+
