@@ -19,7 +19,7 @@ func TestWordSorter(t *testing.T) {
 
 func TestLoadPinyin(t *testing.T) {
 	lexicon := new(Lexicon)
-	lexicon.Load("../data/pinyin-utf8.dat")
+	lexicon.Load("./data/pinyin-utf8.dat")
 	word := []rune("我")
 	pinyin, ok := lexicon.Lex[word[0]]
 	if ok != true {
@@ -35,7 +35,7 @@ func TestLoadPinyin(t *testing.T) {
 
 func TestLoadQueryDict(t *testing.T) {
 	querydict := make(map[string]int)
-	LoadQueryDict("../data/dict.txt", querydict)
+	LoadQueryDict("./data/dict.txt", querydict)
 	querycount, ok := querydict["卬头阔步"]
 	if ok != true {
 		t.Error("pinyin dict key get failed. Got", ok, "Expected true")
@@ -60,7 +60,7 @@ func queryDict(s *Search, querystr, except string, t *testing.T) {
 
 func TestBuildDict(t *testing.T) {
 	s := &Search{}
-	s.Init("../data/pinyin-utf8.dat", "../data/dict.txt")
+	s.Init("./data/pinyin-utf8.dat", "./data/dict.txt")
 	queryDict(s, "卬头阔", "卬头阔步", t)
 	queryDict(s, "youxian", "有限公司", t)
 	queryDict(s, "yx", "有限公司", t)
