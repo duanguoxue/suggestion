@@ -16,7 +16,7 @@ import (
 	"runtime"
 	"runtime/debug"
 	//"runtime/pprof"
-	"github.com/duanguoxue/suggestion/sug"
+	"github.com/duanguoxue/suggestion"
 	"time"
 )
 
@@ -27,7 +27,7 @@ const (
 )
 
 var templates (map[string]*template.Template)
-var search sug.Search
+var search suggestion.Search
 
 //simple web interface
 func safeHandler(fn http.HandlerFunc) http.HandlerFunc {
@@ -158,7 +158,7 @@ func main() {
 				os.Exit(0)
 			}()
 	*/
-	search = sug.Search{}
+	search = suggestion.Search{}
 	search.Init(PINYIN_DICT_DIR, QUERY_DIR)
 
 	http.HandleFunc("/spellcheck", safeHandler(spellHandler))
