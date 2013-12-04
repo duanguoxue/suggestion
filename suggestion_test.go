@@ -45,8 +45,13 @@ func TestLoadQueryDict(t *testing.T) {
 	}
 }
 
-func queryDict(s *Search, querystr, except string, t *testing.T) {
-	mdata := s.SearchSuggest(querystr)
+func queryDict(s *Search, querystr, except string, t *testing.T, flag int ) {
+    var mdata []*Word
+    if flag == 0 {
+	    mdata = s.SearchSuggest(querystr)
+    } else {
+	    mdata = s.SearchSpell(querystr)
+    }
 	if len(mdata) == 0 {
 		t.Error("pinyin dict key  get failed. got", querystr, true, "expected true")
 	}
@@ -58,11 +63,17 @@ func queryDict(s *Search, querystr, except string, t *testing.T) {
 	t.Error("except suggestion get failed. Got", mdata, "Expected ", except)
 }
 
-func TestBuildDict(t *testing.T) {
+func TestSuggestSpell(t *testing.T) {
 	s := &Search{}
 	s.Init("./data/pinyin-utf8.dat", "./data/dict.txt")
-	queryDict(s, "卬头阔", "卬头阔步", t)
-	queryDict(s, "youxian", "有限公司", t)
-	queryDict(s, "yx", "有限公司", t)
-	queryDict(s, "bzj", "兵在精而不在多", t)
+    //suggestion
+	queryDict(s, "卬头阔", "卬头阔步", t, 0)
+	queryDict(s, "youxian", "有限公司", t, 0)
+	queryDict(s, "yx", "有限公司", t, 0)
+	queryDict(s, "bzj", "兵在精而不在多", t, 0)
+    //spell 
+	queryDict(s, "并在精而不在多", "兵在精而不在多", t, 1)
+	queryDict(s, "bingzaijingerbuzaiduo", "兵在精而不在多", t, 1)
 }
+
+
